@@ -1,0 +1,40 @@
+import java.util.Scanner;
+public class Main {
+	public static void main(String[] args) {
+		Scanner leer=new Scanner(System.in);
+		String palabra;
+		while(leer.hasNext())
+		{
+			int[] vec=new int[4];
+			boolean seguir=true;
+			for(int i=0; i<4; i++)
+			{
+				do
+				{
+					palabra=leer.nextLine();
+				} while (palabra.trim().isEmpty());
+				int linea=Integer.parseInt(palabra.replaceAll("\\s",""));
+				if(linea>9)
+				{
+					int prueba=(linea%10)+(linea/100);
+					if(prueba!=7)
+						seguir=false;
+					else
+						vec[i]=(linea%100)/10;
+				}
+				else
+					vec[i]=linea;
+			}
+			if(seguir)
+			{
+				if((vec[0]+vec[2]==7)&&(vec[1]+vec[3]==7))
+					System.out.println("Bien");
+				else
+					System.out.println("Mal");
+			}
+			else
+				System.out.println("Mal");
+		}
+	}
+}
+	
